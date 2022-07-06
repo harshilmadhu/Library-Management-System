@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{frm.as_p}}
+    <input type="submit">
+    <a href="{% url 'home' %}">Back to main</a>
+</form>
+
+{% endblock body %}

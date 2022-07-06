@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+register
+{% endblock title %}
+
+{% block body %}
+
+<br>
+<h3><div class="text-center">Register Yourself Below</h1><br>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="container">
+  <div class="form-group">
+    <label for="">Username</label>
+    <input type="text" class="form-control" name="username" placeholder="Enter Username" size="10">
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input type="email" class="form-control" name="email" placeholder="Enter Email" size="10">
+  </div>
+  <div class="form-group">
+    <label for="">Password</label>
+    <input type="password" class="form-control" name="password" placeholder="Enter Password" size="10">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</form>
+
+<h3><div class="text-center">{% for msg in messages %}
+    {{msg}}    
+{% endfor %}</div></h3>
+
+{% endblock body %}

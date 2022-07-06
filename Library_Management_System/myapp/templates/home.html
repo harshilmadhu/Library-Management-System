@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+home
+{% endblock title %}
+
+{% block body %}
+
+<br>
+<h3><div class="text-center">Welcome to Library</h3>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="container">
+    <div class="form-group">
+      <label for="">Book Name</label>
+      <input type="text" class="form-control" name="book_name" placeholder="Enter Book Name" size="10">
+    </div>
+    <div class="form-group">
+      <label for="">Author</label>
+      <input type="text" class="form-control" name="author" placeholder="Enter Author" size="10">
+    </div>
+    <div class="form-group">
+      <label for="">Description</label>
+      <input type="text" class="form-control" name="description" placeholder="Enter Description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  </form><br>
+
+<h3>Book Details</h3>
+
+{% if all_book %}
+<div class="text-center">
+<table>
+    <thead>
+        <tr>
+            <div class="text-center">
+            <th>Sr. No</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Description</th>
+            </div>
+        </tr>
+    </thead>
+    
+    {% for book in all_book %}
+        
+    <tbody>
+        <tr>
+            <td>{{book.id}}</td>
+            <td>{{book.book_name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.description}}</td>
+    
+
+            <td>
+                <form action="{% url 'delete' book.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+            <td><a href="{% url 'update' book.id %}">Update</a></td>
+
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+{% else %}
+{% endif %}
+
+
+{% endblock body %}
